@@ -38,7 +38,7 @@ def get_relevant_documents(embeddings):
         "include": ["metadatas"]
     }
     
-    response = requests.post(f"{CHROMADB_HOST_PORT}/api/v1/collections/{CHROMADB_COLLECTION_ID}/query", json=data)
+    response = requests.post(f"{CHROMADB_HOST_PORT}/api/v1/collections/{CHROMADB_COLLECTION_ID}/query", json=data , timeout=MAX_TIMEOUT)
     response = response.json()
     return response['metadatas'][0]
 
@@ -78,7 +78,7 @@ def generate_embeddings(query: str):
         "prompt": query
     }
 
-    response = requests.post(f"{EMBEDDINGS_HOST}/api/embeddings", json=data)
+    response = requests.post(f"{EMBEDDINGS_HOST}/api/embeddings", json=data , timeout=MAX_TIMEOUT)
     response = response.json()
 
     return response['embedding']
