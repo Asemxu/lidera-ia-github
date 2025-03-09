@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+python-dotenv
+chromadb-client
+llama-index-embeddings-ollama
+llama-index-vector-stores-chroma
+llama-index-llms-ollama

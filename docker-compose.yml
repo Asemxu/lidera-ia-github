@@ -1,0 +1,49 @@
+services:
+  fastapi:
+    image: fastapi-app
+    container_name: fastapi
+    # restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    command: ["uvicorn", "main:app", "--workers" , "4"  , "--host", "0.0.0.0", "--port", "3000", "--reload"]
+    # networks:
+    #   - lidera_network
+  
+  # ollama:
+  #   image: ollama/ollama
+  #   container_name: ollama
+  #   restart: always
+  #   volumes:
+  #     - ollama:/root/.ollama
+  #   ports:
+  #     - "11434:11434"
+  #   networks:
+  #     - lidera_network
+
+  # chromadb:
+  #   image: chromadb/chroma:0.6.4.dev21
+  #   container_name: chromadb
+  #   restart: always
+  #   ports:
+  #     - "8000:8000"
+  #   volumes:
+  #     - ./chroma:/chroma/chroma
+  #   environment:
+  #     - IS_PERSISTENT=TRUE
+  #     - ANONYMIZED_TELEMETRY=TRUE
+  #     - CORS_ALLOWED_ORIGINS=http://localhost:8000
+  #   networks:
+  #     - lidera_network
+
+# volumes:
+#   ollama:
+
+# networks:
+#   lidera_network:
+#     name: lidera_network
+#     driver: bridge
