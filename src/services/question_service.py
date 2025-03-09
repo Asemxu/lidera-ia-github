@@ -1,4 +1,3 @@
-import os
 from src.models.questions.question_processor import QuestionProcessor
 class QuestionService:
     def __init__(self, logger):

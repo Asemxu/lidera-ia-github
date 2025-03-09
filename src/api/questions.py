@@ -1,5 +1,7 @@
 import requests
 from src.utils.constants.prompt import GETPROMPTMULTIPECHOICEQUESTION
+from src.utils.constants.questions import MAX_TIMEOUT
+
 from src.config.environment import LLM_HOST, LLM_MODEL
 def get_multiple_questions(num_of_questions,story):
     text = GETPROMPTMULTIPECHOICEQUESTION(num_of_questions, story)
@@ -12,7 +14,7 @@ def get_multiple_questions(num_of_questions,story):
         "prompt": text
     }
 
-    response = requests.post(f"{LLM_HOST}/api/generate", json=data, headers={'Content-Type': 'application/json'}, timeout=60)
+    response = requests.post(f"{LLM_HOST}/api/generate", json=data, headers={'Content-Type': 'application/json'}, timeout=MAX_TIMEOUT)
     result = response.json()
     data = result.get("response")
     questions = {

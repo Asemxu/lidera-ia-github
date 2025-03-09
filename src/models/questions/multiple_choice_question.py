@@ -27,7 +27,7 @@ class MultipleChoiceQuestion(Question):
             isValidQuestions = False
             questions ={}
             intents = INITIAL_INTENTS
-            while isValidQuestions == False and intents < MAX_INTENTS:
+            while not isValidQuestions and intents < MAX_INTENTS:
                 questions = await loop.run_in_executor(None,get_multiple_questions, num_of_questions , story)
                 if(validate_format(questions['text'],multiple_choice_question_pattern)):
                     questions['status'] = "Valid format"

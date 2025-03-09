@@ -5,6 +5,7 @@ from src.config.environment import LLM_HOST , LLM_MODEL , EMBEDDINGS_MODEL , EMB
 from src.utils.helpers.chat import format_system_message
 from llama_index.core.memory import ChatMemoryBuffer
 from src.utils.constants.courses import courses
+from src.utils.constants.questions import MAX_TIMEOUT
 
 @lru_cache(maxsize=10000)
 def get_chat_response(messages, context):
@@ -23,7 +24,7 @@ def get_chat_response(messages, context):
         "stream": False
     }
     start_time = time.time()
-    response = requests.post(f"{LLM_HOST}/api/chat", json=data)
+    response = requests.post(f"{LLM_HOST}/api/chat", json=data , timeout=MAX_TIMEOUT)
     response = response.json()
     print(data)
     elapsed_time = time.time() - start_time

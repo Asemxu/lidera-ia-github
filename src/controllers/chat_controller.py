@@ -1,6 +1,5 @@
 from fastapi import  Request
 from src.services.chat_service import ChatService
-from src.models.chat.chat_request import ChatRequest
 
 class ChatController:
     def __init__(self, logger , config):

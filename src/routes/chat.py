@@ -9,11 +9,11 @@ router = APIRouter()
 chat_controller = ChatController(logger,global_config)
 
 @router.post("/chat-asistant")
-async def chat(request: Request, chat_request: ChatRequest):
+async def chat_asistant(request: Request, chat_request: ChatRequest):
     logger.info("Consult api chat asistant")
     return await chat_controller.process_chat(request) 
 
 @router.post("/chat-lidera")
-async def chat(request: Request, chat_request: ChatRequestMessage):
+async def chat_lidera(request: Request, chat_request: ChatRequestMessage):
     logger.info("Consult api chat bot lidera")
     return await chat_controller.process_chat(request)
